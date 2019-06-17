@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+     <fieldset>
+         <form id="f">
+
+             Make: <input type="text" value=""/><br /><br />
+             Model: <input type="text" value="" /> <br /> <br />
+
+             Automatic Transmission:<input type="radio" name="transmission" value="Automatic">
+             Manual Transmission:<input type="radio" name="transmission" value="Manual"> 
+             Semi-automatic Transmission:<input type="radio" name="transmission" value="Semi-automatic"> <br /><br />
+            
+             Color:
+             <select name="bColor">
+                 <option value="Black">Black</option>
+                 <option value="Blue">Blue</option>
+                 <option value="Brown">Brown</option>
+                 <option value="Gold">Gold</option>
+                 <option value="Grey">Grey</option>
+                 <option value="Green">Green</option>
+                 <option value="Orange">Orange</option>
+                 <option value="Other">Other</option>
+                 <option value="Purple">Purple</option>
+                 <option value="Red">Red</option>
+                 <option value="Silver">Silver</option>
+                 <option value="White">White</option>
+                 <option value="Yellow">Yellow</option>
+             </select><br /><br />
+            
+             Body Style:
+             <select name="bodyStyle">
+                 <option value="Cabriolet">Cabriolet</option>
+                 <option value="Convertable">Convertable</option>
+                 <option value="Coupe">Coupe</option>
+                 <option value="Double cab pick-up">Double cab pick-up</option>
+                 <option value="Estate">Estate</option>
+                 <option value="Hatchback">Hatchback</option>
+                 <option value="Roadster">Roadster</option>
+                 <option value="Saloon">Saloon</option>
+                 <option value="Station Wagon">Station Wagon</option>
+                 <option value="Van">Van</option>
+             </select><br /><br />
+            
+             No. of Doors:
+             <select name="nDoors">
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
+             </select><br /><br />
+            
+             Fuel Type: <select name="fType">
+                 <option value="Disel">Disel</option>
+                 <option value="Disel/electric">Disel/electric</option>
+                 <option value="Elecric">Elecric</option>
+                 <option value="Petrol">Petrol</option>
+                 <option value="Petrol/electric">Petrol/electric</option>
+             </select><br /><br />
+
+             Age: <input type="text" value="" ><br /><br />
+             Mileage: <input type="text" value="" ><br /><br />
+             
+             <input type="checkbox" name="extras" value="4x4">4x4
+             <input type="checkbox" name="extras" value="ABS">ABS
+             <input type="checkbox" name="extras" value="ESP">ESP
+             <input type="checkbox" name="extras" value="DVD/TV">DVD/TV
+             <input type="checkbox" name="extras" value="Leather upholstery">Leather upholstery
+             <input type="checkbox" name="extras" value="Reversing Camera">Reversing Camera
+             <input type="checkbox" name="extras" value="Sat-nav">Sat-nav
+             <input type="checkbox" name="extras" value="Panoramic roof">Panoramic roof
+             <br /><br />
+
+             <input type="button" value="Send Data" onclick="validateForm()" />
+
+         </form>
+    </fieldset>
+    <p id = "demo">Data</p>
+
+<script>
+    var a, b, c , d , e , h, j , l, k, g;
+    function Car( make , mdl , tm , bstyle , clr , drs , ftype , age , ma , xt ){
+        this.make = make;
+        this.model = mdl;
+        this.transmission = tm;
+        this.bodystyle = bstyle;
+        this.bcolor = clr;
+        this.doors = drs;
+        this.type = ftype;
+        this.age = age;
+        this.mileage = ma;
+        this.extras = xt;
+       
+    }
+    function validateForm() {
+        transmission(f);
+
+        if (f.elements[0].value === "") {
+            window.alert("Enter make");
+        }
+        else if (f.elements[1].value === "") {
+            window.alert("Enter model");
+        }
+        else if (tm === "uncheked") {
+            window.alert("Enter type of transmission");
+        }
+        
+        else {
+            getDataAndShow();
+        }
+    }
+    function getDataAndShow() {
+        var f = document.getElementById("f");
+        a = f.elements[0].value;
+        b = f.elements[1].value;
+        c = transmission(f);
+        d = f.elements[5].value;
+        e = f.elements[6].value;
+        h = f.elements[7].value;
+        j = f.elements[8].value;
+        l = f.elements[9].value;
+        k = f.elements[10].value;
+        g = extras(f);
+        var car1 = new Car(a, b, c, d , e , h, j , l , k , g); 
+        showData(car1);
+    }
+    function showData(car) {
+        var i;
+        var text = "";
+        for (i in car) {
+            text += car[i] + "<br/>";
+        }
+        document.getElementById("demo").innerHTML = text;
+    }
+    function transmission(f) {
+        var f = document.getElementById("f");
+        if (f.elements[2].checked) {
+            return tm = f.elements[2].value;
+        } else if (f.elements[3].checked) {
+            return tm = f.elements[3].value;
+        } else if (f.elements[4].checked) {
+            return tm = f.elements[4].value;
+        }
+        else return tm = "uncheked";
+    } 
+    function extras() {
+        var x = "";
+        var c=0;
+        for (var i = 11; i <= 18; i++) {
+            if (f.elements[i].checked) {
+                if (c) {
+                    x += "&"
+                }
+                x += f.elements[i].value;
+                c = 1;
+            }
+        }
+        return x;
+
+    }
+</script>
+</body>
+</html>

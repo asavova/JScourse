@@ -1,0 +1,7 @@
+function functionCall(){
+    document.getElementById("h3_1").innerHTML = "The jedi opened his mouth and made a loud gurgling sound.";
+    document.getElementById("h3_2").innerHTML = "The dark lord searched the dead padawans for their weapons and any other information that he could find on them.";
+    document.getElementById("h3_3").innerHTML = "He got eight sabers some Republic credits and a holo disk that had some training which the dark lord was already familliar with.";
+    document.getElementById("h3_4").innerHTML = "The evil one smiled and slowly shook his head.";
+    document.getElementById("h3_5").innerHTML = "He turned and looked around, nothing but wet sand dunes as far as the eye could see.";
+}
