@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HW_2_js</title>
+<style>
+.header {
+  background-color: #26a0da;
+  padding:10px;
+  width: 62%;
+  border-top: 2px  solid steelblue;
+  border-left: 2px  solid steelblue;
+  border-right: 2px  solid steelblue;
+
+}
+
+.form{
+padding: 20px 10px;
+border: 2px solid steelblue;
+width: 62%;
+
+}
+input{
+height: 26px;
+width: 150px;
+color: #222222;
+border: 1px solid steelblue;
+text-align: right;
+padding-right: 2px;
+}
+
+select {
+background-color:  #92d0ed;
+width:150px ;
+height: 30px;
+cursor: pointer;
+
+}
+select option:hover{
+background-color: #26a0da;
+color: white;
+
+}
+#result2 ,#result{
+font-weight: bold;
+width: auto;
+}
+button{
+background-color:  #92d0ed;
+border: 1px solid steelblue;
+height: 30px;
+
+}
+#operators,#operatorsCompare{
+text-align-last: center;
+font-weight: bold;
+}
+button:hover{background-color: #26a0da;}
+option {
+font-size: 16px;
+text-align: center;
+}
+hr{
+margin:20px 0;
+ width:100%;
+ background-color: steelblue;
+ border: 1px solid steelblue;}
+.ArithmeticOp ,.CompareOp{margin:auto; text-align: center;}
+</style>
+</head>
+<div class="header">
+</div>
+<div class="form">
+<div class="ArithmeticOp">
+<input id=txt1 type="text"  value="{number1}" placeholder="{number1}" onfocus="this.value='';this.style.background='white'"/>
+
+<select id="operators">
+	<option value="+">&plus;</option>
+	<option value="-">&minus;</option>
+	<option value="*">&times;</option>
+	<option value="/">&divide;</option>
+	<option value="%">&percnt;</option>
+	<option value="++">{number1} &plus;&plus;</option>
+	<option value="--">{number1} &minus;&minus;</option>
+</select>
+<input id=txt2 type="text" value="{number2}" placeholder="{number2}" onfocus="this.value='';this.style.background='white'"/>
+
+<button onclick="calc()" style=" cursor: pointer;">Show Result</button>
+<input type="text" value="Result" id="result" readonly/>
+</div>
+
+<hr/>
+
+<div class="CompareOp">
+<input id=txt3 type="text" value="{value1}" placeholder="{value1}" onfocus="this.value='' ;this.style.background='white'"/>
+
+<select id="operatorsCompare">
+<option value="==">==</option>
+<option value="===">===</option>
+
+	<option value="<">&lt;</option>
+	<option value=">">&gt;</option>
+	<option value="<=">&lt;&equals;</option>
+	<option value=">=">&gt;&equals;</option>
+
+</select>
+<input id=txt4 type="text" value="{value2}" placeholder="{value2}" onfocus="this.value='';this.style.background='white'"/>
+<button onclick="compareCalc()" style=" cursor: pointer;">Show Result</button>
+<input type="text" value="Result" id="result2" readonly/>
+</div>
+</div>
+<script>
+function numalert(a,b) {
+    if(isNaN(a)||(isNaN(b))){
+        window.alert("Enter number only!")
+    }
+    document.getElementById('txt1').style.background="#ffffb3";
+    document.getElementById('txt2').style.background="#ffffb3";
+    document.getElementById('result').style.background="#ffffb3";
+
+}
+function calc(){
+    var a= parseInt(document.getElementById('txt1').value);
+    var b= parseInt(document.getElementById('txt2').value);
+    var oper=document.getElementById('operators').value;
+
+
+
+
+    if(oper==="+"){
+        numalert(a,b);
+        document.getElementById('result').value=a+b;
+
+
+    }
+    if(oper==="-"){
+        numalert(a,b);
+        document.getElementById('result').value=a-b;
+
+    }
+    if(oper==="*"){
+        numalert(a,b);
+        document.getElementById('result').value=a*b;
+
+    }
+    if(oper==="/"){
+        numalert(a,b);
+        if(b==0){window.alert("Division by zero is undefined!")}
+
+        else {document.getElementById('result').value=a/b;}
+
+    }
+    if(oper==="%"){
+        numalert(a,b);
+        document.getElementById('result').value=a%b;
+
+    }
+
+    if(oper==="++"){
+        if(isNaN(a)){
+            window.alert("Enter number only!");
+        }
+            document.getElementById('txt1').style.background = "#ffffb3";
+            document.getElementById('result').style.background = "#ffffb3";
+            document.getElementById('result').value = a + 1;
+
+    }
+    if(oper==="--"){
+        if(isNaN(a)){
+            window.alert("Enter number only!");
+        }
+            document.getElementById('txt1').style.background = "#ffffb3";
+            document.getElementById('result').style.background = "#ffffb3";
+            document.getElementById('result').value = a - 1;
+
+    }
+}
+
+
+function compareCalc(){
+    var inp1=document.getElementById('txt3').value;
+    var inp2=document.getElementById('txt4').value;
+    var m= parseInt(document.getElementById('txt3').value);
+    var n= parseInt(document.getElementById('txt4').value);
+    var operC=document.getElementById('operatorsCompare').value;
+
+
+    if(operC==="=="){
+        document.getElementById('result2').value=Boolean(inp1==inp2);
+    }
+    if(operC==="==="){
+        document.getElementById('result2').value=Boolean(inp1 === inp2);
+    }
+
+    if(operC==="<"){
+        numalert(m,n);
+        document.getElementById('result2').value=Boolean(m<n);
+    }
+    if(operC===">"){
+        numalert(m,n);
+        document.getElementById('result2').value=Boolean(m>n);
+    }
+    if(operC==="<="){
+        numalert(m,n);
+        document.getElementById('result2').value=Boolean(m<=n);
+    }
+    if(operC===">="){
+        numalert(m,n);
+        document.getElementById('result2').value=Boolean(m>=n);
+    }
+    document.getElementById('txt3').style.background="#ffffb3";
+    document.getElementById('txt4').style.background="#ffffb3";
+    document.getElementById('result2').style.background="#ffffb3";
+
+}
+
+</script>
+</body>
+</html>
